@@ -39,8 +39,8 @@ command to run if program contains helper info
 
 Contributors names and contact info
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+ex. Muhammad Daim  
+ex. [@daimkhan1](https://twitter.com/daimkhan1)
 
 ## Version History
 
@@ -52,7 +52,7 @@ ex. [@DomPizzie](https://twitter.com/dompizzie)
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is licensed under the Muhammad Daim License - see the LICENSE.md file for details
 
 ## Acknowledgments
 
