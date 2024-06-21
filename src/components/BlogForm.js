@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function BlogForm(props) {
+function BlogForm(props) {
   return (
     <form onSubmit={props.handleSubmit}>
       <input
@@ -22,3 +22,4 @@ export default function BlogForm(props) {
     </form>
   );
 }
+export default BlogForm;

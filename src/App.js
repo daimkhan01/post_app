@@ -4,42 +4,30 @@ import BlogForm from "./components/BlogForm";
 import DisplayPost from "./components/DisplayPost";
 
 function App() {
-  // State to manage posts
   const [posts, setPosts] = useState([]);
-
-  // State to manage form input
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-
-  // State to manage editing mode
   const [editMode, setEditMode] = useState(false);
   const [editId, setEditId] = useState(null);
 
-  // posts from API
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts")
       .then((res) => {
-        setPosts(res.data);
+        setPosts(res.data.map((post) => ({ ...post, comments: [] })));
       })
       .catch((error) => {
         console.error("Error posts:", error);
       });
   }, []);
 
-  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (editMode) {
-      // Update existing post
       const updatedPosts = posts.map((post) => {
         if (post.id === editId) {
-          return {
-            ...post,
-            title,
-            body,
-          };
+          return { ...post, title, body };
         }
         return post;
       });
@@ -47,25 +35,23 @@ function App() {
       setEditMode(false);
       setEditId(null);
     } else {
-      // Create new post
       const newPost = {
         id: posts.length + 1,
-        title: title,
-        body: body,
+        title,
+        body,
+        comments: [],
       };
       setPosts([newPost, ...posts]);
     }
-    // Clear the form fields
+
     setTitle("");
     setBody("");
   };
 
-  // Function to delete a post
   const handleDelete = (id) => {
     setPosts(posts.filter((post) => post.id !== id));
   };
 
-  // Function to edit a post
   const handleEdit = (post) => {
     setTitle(post.title);
     setBody(post.body);
@@ -73,9 +59,54 @@ function App() {
     setEditId(post.id);
   };
 
+  const handleAddComment = (postId, comment) => {
+    setPosts(
+      posts.map((post) => {
+        if (post.id === postId) {
+          return { ...post, comments: [...post.comments, comment] };
+        }
+        return post;
+      })
+    );
+  };
+
+  const handleEditComment = (postId, commentId, updatedComment) => {
+    setPosts(
+      posts.map((post) => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: post.comments.map((comment) =>
+              comment.id === commentId
+                ? { ...comment, text: updatedComment }
+                : comment
+            ),
+          };
+        }
+        return post;
+      })
+    );
+  };
+
+  const handleDeleteComment = (postId, commentId) => {
+    setPosts(
+      posts.map((post) => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: post.comments.filter(
+              (comment) => comment.id !== commentId
+            ),
+          };
+        }
+        return post;
+      })
+    );
+  };
+
   return (
     <div className="App">
-      <h1>Simple Blog</h1>
+      <h1>♥ Chat Blog ♥</h1>
       <BlogForm
         body={body}
         title={title}
@@ -88,6 +119,9 @@ function App() {
         posts={posts}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
+        handleAddComment={handleAddComment}
+        handleEditComment={handleEditComment}
+        handleDeleteComment={handleDeleteComment}
       />
     </div>
   );

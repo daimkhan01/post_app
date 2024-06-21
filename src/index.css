@@ -36,6 +36,10 @@ form {
   outline: none;
 }
 
+.coment{
+  width: 60% !important;
+}
+
 textarea {
   height: 100px;
   resize: none;
@@ -49,6 +53,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
 }
 
 button:hover {
@@ -88,4 +93,10 @@ button:hover {
 
 .post button:hover {
   background-color: #c82333;
+}
+
+.btn{
+  padding: 1px 50px;
+  margin-bottom: 10px;
+  background-color: #dc3545;
 }
