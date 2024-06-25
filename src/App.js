@@ -106,7 +106,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>♥ Chat Blog ♥</h1>
+      <h1>
+        ♥ <span> Chat Blog</span> ♥
+      </h1>
       <BlogForm
         body={body}
         title={title}
