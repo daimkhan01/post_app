@@ -5,13 +5,17 @@
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   line-height: 1.7rem;
-  cursor: url("../../../../React/inputform/src/assets/crusor-mouse.png"),auto;
 }
 
 .App {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+}
+.App span{
+  text-decoration: underline;
+  color: #333;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
